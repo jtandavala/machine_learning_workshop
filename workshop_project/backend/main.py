@@ -1,8 +1,10 @@
 from flask import Flask, request, jsonify
+from flask_cors import CORS
 import pickle
 import numpy as np
 
 app = Flask(__name__)
+
 
 
 with open('./models/finalized_model.sav', 'rb') as f:
@@ -13,7 +15,7 @@ with open('./models/scaler.sav', 'rb') as f:
 
 @app.route("/")
 def index():
-    return {"hello": "world"}
+    return {"api": "v1"}
 
 @app.route('/predict', methods=['POST'])
 def predict():
@@ -42,3 +44,7 @@ def predict():
 
 if __name__ == '__main__':
     app.run(debug=True)
+
+
+
+
